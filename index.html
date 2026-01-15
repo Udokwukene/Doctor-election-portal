@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Practitioners Election Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landing-page" class="page active">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">Doctor Portal</div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('landing-page')" class="active">Home</a></li>
+                    <li><a href="#" onclick="showPage('registration-page')">Register</a></li>
+                    <li><a href="#" onclick="showPage('admin-page')">Admin</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Medical Practitioners Voting Portal</h1>
+                <p>Secure and transparent elections for medical professionals</p>
+                <button class="cta-button" onclick="showPage('registration-page')">
+                    <i class="fas fa-user-plus"></i> Register to Vote
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Page -->
+    <div id="registration-page" class="page">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">Medical Election Portal</div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('landing-page')">Home</a></li>
+                    <li><a href="#" onclick="showPage('registration-page')" class="active">Register</a></li>
+                    <li><a href="#" onclick="showPage('admin-page')">Admin</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="form-container">
+            <h2><i class="fas fa-user-plus"></i> Voter Registration</h2>
+            
+            <div class="instructions">
+                <h3>Registration Instructions</h3>
+                <ol>
+                    <li>Fill in all required fields accurately</li>
+                    <li>Ensure your Doctor's ID is valid and active</li>
+                    <li>Double-check all information before submitting</li>
+                    <li>You will receive a unique voter ID upon successful registration</li>
+                </ol>
+            </div>
+
+            <form id="registration-form">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="otherNames">Other Names</label>
+                    <input type="text" id="otherNames">
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Date of Birth *</label>
+                    <input type="date" id="dob" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="sex">Sex *</label>
+                    <select id="sex" required>
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="maritalStatus">Marital Status *</label>
+                    <select id="maritalStatus" required>
+                        <option value="">Select</option>
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                        <option value="Divorced">Divorced</option>
+                        <option value="Widowed">Widowed</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="lga">Local Government Area *</label>
+                    <input type="text" id="lga" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="doctorId">Doctor's ID *</label>
+                    <input type="text" id="doctorId" required>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-user-check"></i> Register
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Page -->
+    <div id="success-page" class="page">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">Medical Election Portal</div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('landing-page')">Home</a></li>
+                    <li><a href="#" onclick="showPage('registration-page')">Register</a></li>
+                    <li><a href="#" onclick="showPage('admin-page')">Admin</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="success-container">
+            <div class="success-icon">✓</div>
+            <h2>Registration Successful!</h2>
+            <p>Your voter registration has been completed successfully.</p>
+            
+            <div class="voter-id-display">
+                <p><strong>Your Unique Voter ID:</strong></p>
+                <div class="voter-id-container">
+                    <p class="voter-id" id="displayVoterId"></p>
+                    <button class="copy-btn" onclick="copyVoterId()" title="Copy to clipboard">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                    <button class="toggle-btn" onclick="toggleVoterIdVisibility()" title="Show/Hide ID">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <p class="note">Click the copy button to save your ID</p>
+            </div>
+            
+            <button class="cta-button" onclick="showPage('landing-page')">
+                <i class="fas fa-home"></i> Return to Home
+            </button>
+        </div>
+    </div>
+
+    <!-- Admin Page -->
+    <div id="admin-page" class="page">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">Medical Election Portal</div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('landing-page')">Home</a></li>
+                    <li><a href="#" onclick="showPage('registration-page')">Register</a></li>
+                    <li><a href="#" onclick="showPage('admin-page')" class="active">Admin</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="admin-login" class="form-container">
+            <h2><i class="fas fa-lock"></i> Admin Login</h2>
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label for="adminUsername">Username</label>
+                    <input type="text" id="adminUsername" required>
+                </div>
+                <div class="form-group password-group">
+                    <label for="adminPassword">Password</label>
+                    <div class="password-input-container">
+                        <input type="password" id="adminPassword" required>
+                        <button type="button" class="password-toggle" onclick="togglePasswordVisibility('adminPassword')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+            
+            <div class="instructions" style="margin-top: 20px;">
+                <h3>Default Admin Credentials:</h3>
+                <p>Username: <strong>admin</strong></p>
+                <p>Password: <strong>admin123</strong></p>
+            </div>
+        </div>
+
+        <div id="admin-dashboard" class="admin-container" style="display: none;">
+            <h2><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h2>
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>Total Registered</h3>
+                    <p class="stat-number" id="totalVoters">0</p>
+                </div>
+            </div>
+            <div class="table-container">
+                <table id="votersTable">
+                    <thead>
+                        <tr>
+                            <th>Voter ID</th>
+                            <th>Full Name</th>
+                            <th>Date of Birth</th>
+                            <th>Sex</th>
+                            <th>Marital Status</th>
+                            <th>LGA</th>
+                            <th>Doctor's ID</th>
+                        </tr>
+                    </thead>
+                    <tbody id="votersTableBody">
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Add Export Button -->
+            <div class="admin-actions">
+                <button class="logout-button" onclick="logoutAdmin()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+                <button class="export-button" onclick="exportVoterData()">
+                    <i class="fas fa-download"></i> Export Data
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
